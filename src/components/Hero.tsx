@@ -2,17 +2,26 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const images = [
-    "/images/hero-1.webp",
-    "/images/hero-2.webp",
-];
+import { supabase } from "@/lib/supabase";
 
 export default function Hero() {
+    const [images, setImages] = useState<string[]>(["/images/hero-1.webp", "/images/hero-2.webp"]); // Valores por defecto rápidos
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isRestModeOn, setIsRestModeOn] = useState(false);
 
     useEffect(() => {
+        async function fetchHeroImages() {
+            const { data } = await supabase
+                .from('site_images')
+                .select('url')
+                .in('id', ['hero-1', 'hero-2']);
+
+            if (data && data.length > 0) {
+                setImages(data.map(img => img.url));
+            }
+        }
+        fetchHeroImages();
+
         const interval = setInterval(() => {
             setCurrentImageIndex((prev) => (prev + 1) % images.length);
         }, 5000);
@@ -26,7 +35,7 @@ export default function Hero() {
             clearInterval(interval);
             clearTimeout(timeout);
         };
-    }, []);
+    }, [images.length]);
 
     return (
         <section className="relative w-full h-[80vh] min-h-[600px] overflow-hidden bg-primary">

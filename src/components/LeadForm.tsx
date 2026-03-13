@@ -2,8 +2,9 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { supabase } from "@/lib/supabase";
 
-const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxlJTDW4DZBPjKYfkErm972pgXuMQ-P7PLZyY7xdrC3P1BvOmRiPzjZaMVq5DAxSaMthA/exec";
+const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzQFsfxdrRXcNYpAfH7zCKXoO7bzrQvGekEI6UtWrBf3c7wtENKpFziJOkaaQhVyVt--w/exec";
 
 export default function LeadForm() {
     const [formData, setFormData] = useState({
@@ -184,6 +185,14 @@ export default function LeadForm() {
 
         if (success) {
             console.log("Evento Completado enviado correctamente.");
+
+            // Disparar telemetría Nativa a Supabase para inflar gráficos de Dashboard
+            try {
+                await supabase.rpc('increment_click', { button_id: 'lead_form_submit' });
+            } catch (error) {
+                console.error("Error tracked nativo lead form:", error);
+            }
+
             setStatus("success");
             setFormData({ nombre: "", apellido: "", email: "", telefono: "", checkIn: "", checkOut: "", huespedes: "1" });
             setCantidadNoches(0);
@@ -309,12 +318,17 @@ export default function LeadForm() {
                                         if (abandonTimerRef.current) clearTimeout(abandonTimerRef.current);
                                         if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
 
-                                        // Enviar de fondo (silencioso)
+                                        // Enviar de fondo (silencioso) a Google Sheets
                                         const payloadToSubmit = {
                                             ...formStateRef.current,
                                             estado: "Completado"
                                         };
                                         sendToWebhook(payloadToSubmit, "form_submitted_whatsapp");
+
+                                        // Telemetria nativa a Supabase
+                                        try {
+                                            supabase.rpc('increment_click', { button_id: 'lead_form_wsp' });
+                                        } catch (e) { }
 
                                         // Feedback en UI opcional
                                         setStatus("success");

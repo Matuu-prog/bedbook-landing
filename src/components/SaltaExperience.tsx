@@ -1,32 +1,51 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
+
+interface SiteImage {
+    id: string;
+    url: string;
+    title: string | null;
+    description: string | null;
+}
 
 export default function SaltaExperience() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [mainImage, setMainImage] = useState("/images/salta-vertical.webp");
+    const [lowerImage, setLowerImage] = useState("/images/paisaje-ancho.webp");
+    const [sideImage, setSideImage] = useState("/images/detalle-deco.webp");
+    const [imperdibles, setImperdibles] = useState<SiteImage[]>([]);
 
-    // Lista de 3 Imperdibles de Salta
-    const imperdibles = [
-        {
-            id: 1,
-            name: "Cafayate y la Ruta del Vino",
-            desc: "Disfrutá del corazón vitivinícola de los Valles Calchaquíes, famoso por su Torrontés de altura.",
-            img: "/images/cafayate-vinos.webp",
-        },
-        {
-            id: 2,
-            name: "Salinas Grandes",
-            desc: "Un inmenso desierto de sal a más de 3.000 metros sobre el nivel del mar.",
-            img: "/images/salinas.webp",
-        },
-        {
-            id: 3,
-            name: "Tren a las Nubes",
-            desc: "Una obra maestra de la ingeniería a 4.220 metros de altura, con paisajes andinos únicos.",
-            img: "/images/tren-nubes.webp",
-        },
-    ];
+    useEffect(() => {
+        async function fetchImages() {
+            const { data } = await supabase
+                .from('site_images')
+                .select('*')
+                .in('id', ['salta-vertical', 'salta-horizontal', 'salta-cuadrada', 'salta-imperdible-1', 'salta-imperdible-2', 'salta-imperdible-3']);
+
+            if (data) {
+                const vertical = data.find(img => img.id === 'salta-vertical');
+                if (vertical) setMainImage(vertical.url);
+
+                const horizontal = data.find(img => img.id === 'salta-horizontal');
+                if (horizontal) setLowerImage(horizontal.url);
+
+                const cuadrada = data.find(img => img.id === 'salta-cuadrada');
+                if (cuadrada) setSideImage(cuadrada.url);
+
+                const modalImgs = data
+                    .filter(img => img.id.startsWith('salta-imperdible-'))
+                    .sort((a, b) => a.id.localeCompare(b.id));
+
+                if (modalImgs.length > 0) {
+                    setImperdibles(modalImgs);
+                }
+            }
+        }
+        fetchImages();
+    }, []);
 
     return (
         <>
@@ -52,7 +71,7 @@ export default function SaltaExperience() {
                         {/* Imagen Grande (Vertical - Izquierda) */}
                         <div className="relative row-span-2 rounded-[2rem] overflow-hidden shadow-2xl group">
                             <img
-                                src="/images/salta-vertical.webp"
+                                src={mainImage}
                                 alt="Salta Vertical"
                                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                             />
@@ -60,14 +79,14 @@ export default function SaltaExperience() {
                         {/* Imagenes Pequeñas (Derecha) */}
                         <div className="relative rounded-[2rem] overflow-hidden shadow-xl group">
                             <img
-                                src="/images/paisaje-ancho.webp"
+                                src={lowerImage}
                                 alt="Paisaje Ancho Norteño"
                                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                             />
                         </div>
                         <div className="relative rounded-[2rem] overflow-hidden shadow-xl group">
                             <img
-                                src="/images/detalle-deco.webp"
+                                src={sideImage}
                                 alt="Detalle Decorativo Salteño"
                                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                             />
@@ -116,14 +135,14 @@ export default function SaltaExperience() {
                                             whileHover={{ y: -5 }}
                                         >
                                             <img
-                                                src={item.img}
-                                                alt={item.name}
+                                                src={item.url}
+                                                alt={item.title || "Imperdible"}
                                                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                             />
                                             {/* Gradiente inmersivo inferior */}
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6">
-                                                <h4 className="font-bold text-2xl text-white mb-2">{item.name}</h4>
-                                                <p className="text-gray-200 text-sm leading-relaxed drop-shadow-md">{item.desc}</p>
+                                                <h4 className="font-bold text-2xl text-white mb-2">{item.title}</h4>
+                                                <p className="text-gray-200 text-sm leading-relaxed drop-shadow-md">{item.description}</p>
                                             </div>
                                         </motion.div>
                                     ))}

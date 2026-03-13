@@ -1,4 +1,16 @@
+"use client";
+
+import { Instagram, Facebook, Phone, Mail } from "lucide-react";
+import { supabase } from "@/lib/supabase";
+
 export default function Footer() {
+    const trackClick = async (buttonId: string) => {
+        try {
+            await supabase.rpc('increment_click', { button_id: buttonId });
+        } catch (error) {
+            console.error("Error tracking click:", error);
+        }
+    };
     return (
         <footer className="bg-slate-900 border-t border-white/10 py-6 px-4 w-full text-slate-300">
             <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-8 mb-6">
@@ -17,30 +29,63 @@ export default function Footer() {
                     </p>
                 </div>
 
-                {/* Columna 2: Enlaces Rápidos */}
-                <div className="md:w-1/4 space-y-2">
-                    <h4 className="text-white font-semibold text-xs uppercase tracking-wider">Secciones</h4>
-                    <ul className="space-y-1 text-xs font-light">
-                        <li><a href="#" className="hover:text-accent transition-colors">Nuestras Propiedades</a></li>
-                        <li><a href="#" className="hover:text-accent transition-colors">Experiencia Salta</a></li>
-                        <li><a href="#" className="hover:text-accent transition-colors">Reseñas y Confianza</a></li>
-                    </ul>
+                <div className="md:w-1/3 space-y-4">
+                    <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-2">Contacto</h4>
+                    <div className="flex flex-col gap-3">
+                        <a
+                            href="https://wa.me/5493871234567"
+                            target="_blank"
+                            rel="noreferrer"
+                            onClick={() => trackClick("footer_phone")}
+                            className="flex items-center gap-3 text-sm font-light hover:text-white transition-colors bg-white/5 p-3 rounded-xl border border-white/10 hover:bg-white/10"
+                        >
+                            <Phone className="w-5 h-5 text-accent" />
+                            +54 9 387 123 4567
+                        </a>
+
+                        <a
+                            href="mailto:bedbook.reservas@gmail.com"
+                            onClick={() => trackClick("footer_email")}
+                            className="flex items-center gap-3 text-sm font-light hover:text-white transition-colors bg-white/5 p-3 rounded-xl border border-white/10 hover:bg-white/10"
+                        >
+                            <Mail className="w-5 h-5 text-accent" />
+                            bedbook.reservas@gmail.com
+                        </a>
+                    </div>
                 </div>
 
-                {/* Columna 3: Contacto */}
-                <div className="md:w-1/4 space-y-2">
-                    <h4 className="text-white font-semibold text-xs uppercase tracking-wider">Contacto</h4>
-                    <ul className="space-y-1 text-xs font-light">
-                        <li className="flex items-center gap-2"><span>📞</span> +54 9 387 123 4567</li>
-                        <li className="flex items-center gap-2"><span>✉️</span> reservas@bedbook.com.ar</li>
-                    </ul>
+                {/* Columna 3: Redes Sociales */}
+                <div className="md:w-1/4 space-y-4">
+                    <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-2">Seguinos</h4>
+                    <div className="flex gap-4">
+                        <a
+                            href="#"
+                            onClick={() => trackClick("footer_instagram")}
+                            className="bg-white/5 p-3 rounded-full border border-white/10 text-white hover:bg-accent hover:text-white hover:border-accent transition-all shadow-lg"
+                        >
+                            <Instagram className="w-5 h-5" />
+                        </a>
+                        <a
+                            href="#"
+                            onClick={() => trackClick("footer_facebook")}
+                            className="bg-white/5 p-3 rounded-full border border-white/10 text-white hover:bg-accent hover:text-white hover:border-accent transition-all shadow-lg"
+                        >
+                            <Facebook className="w-5 h-5" />
+                        </a>
+                    </div>
                 </div>
 
             </div>
 
             {/* Copyright Bottom Bar */}
             <div className="max-w-6xl mx-auto border-t border-white/10 pt-4 flex flex-col md:flex-row justify-between items-center text-[10px] font-light text-slate-500">
-                <p>© {new Date().getFullYear()} Bedbook Salta.</p>
+                <div className="flex items-center gap-2">
+                    <p>© {new Date().getFullYear()} Bedbook Salta.</p>
+                    {/* Botón Oculto de Acceso Admin */}
+                    <a href="/admin/login" className="opacity-10 hover:opacity-100 transition-opacity" title="Panel de Control">
+                        🔒
+                    </a>
+                </div>
                 <div className="flex gap-4 mt-2 md:mt-0">
                     <a href="#" className="hover:text-white transition-colors">Términos</a>
                     <a href="#" className="hover:text-white transition-colors">Privacidad</a>

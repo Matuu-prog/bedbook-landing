@@ -1,7 +1,6 @@
 import Hero from "@/components/Hero";
 import MapWrapper from "@/components/MapWrapper";
 import LeadForm from "@/components/LeadForm";
-import SaltaExperience from "@/components/SaltaExperience";
 import VirtualTour360 from "@/components/VirtualTour360";
 import ApartmentsCarousel from "@/components/ApartmentsCarousel";
 import Navbar from "@/components/Navbar";
@@ -22,9 +21,6 @@ export default function Home() {
 
       <Hero />
 
-      {/* Salta Experience Section with Modal 
-      <SaltaExperience /> */}
-
       {/* Recorrido Virtual 360 */}
       <VirtualTour360 />
 
@@ -36,8 +32,7 @@ export default function Home() {
       {/* Property Map Section */}
       <section id="ubicaciones" className="py-24 px-6 max-w-7xl mx-auto w-full relative z-20 bg-background">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Nuestras Propiedades</h2>
-          <p className="text-lg text-gray-300 font-light tracking-wide italic">Descubrí ubicaciones premium para tu próxima estadía.</p>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Ubicaciones premium en los mejores puntos de la ciudad</h2>
         </div>
         <MapWrapper />
       </section>

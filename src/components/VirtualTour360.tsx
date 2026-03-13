@@ -6,11 +6,9 @@ export default function VirtualTour360() {
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center max-w-2xl mx-auto mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-primary sm:text-5xl mb-4">
-                        Viví la experiencia Bedbook
+                        Explorá los espacios con tecnología 3D y conoce el estilo, el nivel de
+                        equipamiento y los detalles que caracterizan a nuestros alojamientos
                     </h2>
-                    <p className="text-lg leading-8 text-gray-600">
-                        Recorré de manera interactiva uno de nuestros espacios de categoría en Salta mediante tecnología de escaneo 3D.
-                    </p>
                 </div>
 
                 <div className="w-full rounded-2xl overflow-hidden shadow-2xl border border-gray-100 bg-gray-50 aspect-video lg:aspect-auto">
@@ -22,6 +20,12 @@ export default function VirtualTour360() {
                         title="Bedbook Matterport 360 Virtual Tour"
                     ></iframe>
                 </div>
+                <p className="text-lg leading-8 text-gray-600 mt-4" style={{ textAlign: "center" }} >
+                    Este tour muestra una de nuestras unidades.
+                    Cada departamento cuenta con su propia distribución y amoblamiento, manteniendo
+                    siempre el mismo estándar de diseño, equipamiento y confort que caracteriza a
+                    nuestros alojamientos.
+                </p>
             </div>
         </section>
     );

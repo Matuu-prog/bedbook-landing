@@ -49,7 +49,8 @@ export default function InventoryPage() {
             const { data: urlData } = supabase.storage.from('images').getPublicUrl(filePath);
             setCurrentApt({ ...currentApt, image_url: urlData.publicUrl });
         } else {
-            alert('Error subiendo imagen. Verifica que el Bucket "images" sea Público.');
+            console.error("Upload error:", uploadError);
+            alert('Error subiendo imagen: ' + uploadError.message + '. Verifica que el Bucket "images" sea Público.');
         }
         setUploadingImage(false);
     };

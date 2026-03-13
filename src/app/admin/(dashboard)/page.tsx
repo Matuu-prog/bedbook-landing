@@ -6,7 +6,7 @@ import {
     AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer,
     BarChart, Bar, PieChart, Pie, Cell, XAxis as BarXAxis, YAxis as BarYAxis, CartesianGrid as BarCartesianGrid, Tooltip as BarTooltip
 } from 'recharts';
-import { Users, TrendingUp, MapPin, MousePointerClick, Instagram, Facebook, Phone, Mail, Navigation } from 'lucide-react';
+import { Users, TrendingUp, MapPin, MousePointerClick, Instagram, Phone, Mail, Navigation } from 'lucide-react';
 
 // Componente Principal
 const COLORS = ['#365361', '#A38A5E', '#cbd5e1', '#64748b'];
@@ -33,7 +33,6 @@ export default function DashboardPage() {
                     switch (item.id) {
                         case 'nav_reserva': name = 'Reserva (Navbar)'; icon = Navigation; color = '#365361'; break;
                         case 'footer_instagram': name = 'Instagram'; icon = Instagram; color = '#e1306c'; break;
-                        case 'footer_facebook': name = 'Facebook'; icon = Facebook; color = '#1877f2'; break;
                         case 'footer_phone': name = 'WhatsApp (Footer)'; icon = Phone; color = '#25d366'; break;
                         case 'footer_email': name = 'Email Institucional'; icon = Mail; color = '#ea4335'; break;
                         case 'lead_form_submit': name = 'Lead Formulario Web'; icon = MousePointerClick; color = '#A38A5E'; break;

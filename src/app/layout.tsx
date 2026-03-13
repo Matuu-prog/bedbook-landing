@@ -14,8 +14,37 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Bedbook",
-  description: "Landing Page premium para gestión y alquiler de propiedades vacacionales Bedbook.",
+  title: "Bedbook | Alquileres Temporarios Premium en Salta",
+  description: "Descubrí los mejores departamentos para tu estadía en Salta. Gestión de alojamientos vacacionales premium con Bedbook. Confort, ubicación y calidad garantizada.",
+  keywords: ["alquiler temporal Salta", "departamentos Salta", "Bedbook", "alojamiento vacacional", "turismo Salta", "gestión de propiedades"],
+  authors: [{ name: "Bedbook" }],
+  viewport: "width=device-width, initial-scale=1",
+  robots: "index, follow",
+  alternates: {
+    canonical: "https://bedbook.com.ar", // Reemplazar con el dominio real si es diferente
+  },
+  openGraph: {
+    type: "website",
+    locale: "es_AR",
+    url: "https://bedbook.com.ar",
+    title: "Bedbook | Alquileres Temporarios Premium en Salta",
+    description: "Gestión premium de alojamientos vacacionales en Salta. Encontrá tu próximo hogar lejos de casa.",
+    siteName: "Bedbook",
+    images: [
+      {
+        url: "/images/bedbook-logo.jpg", // Usamos el logo que dejamos como fallback
+        width: 1200,
+        height: 630,
+        alt: "Bedbook - Alquileres Temporarios",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bedbook | Alquileres Temporarios Premium en Salta",
+    description: "Gestión premium de alojamientos vacacionales en Salta.",
+    images: ["/images/bedbook-logo.jpg"],
+  },
 };
 
 export default function RootLayout({

@@ -1,6 +1,6 @@
 "use client";
 
-import { Instagram, Facebook, Phone, Mail } from "lucide-react";
+import { Instagram, Phone, Mail } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 export default function Footer() {
@@ -33,14 +33,14 @@ export default function Footer() {
                     <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-2">Contacto</h4>
                     <div className="flex flex-col gap-3">
                         <a
-                            href="https://wa.me/5493871234567"
+                            href="https://wa.me/5493872542200"
                             target="_blank"
                             rel="noreferrer"
                             onClick={() => trackClick("footer_phone")}
                             className="flex items-center gap-3 text-sm font-light hover:text-white transition-colors bg-white/5 p-3 rounded-xl border border-white/10 hover:bg-white/10"
                         >
                             <Phone className="w-5 h-5 text-accent" />
-                            +54 9 387 123 4567
+                            +54 9 387 254 2200
                         </a>
 
                         <a
@@ -59,18 +59,13 @@ export default function Footer() {
                     <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-2">Seguinos</h4>
                     <div className="flex gap-4">
                         <a
-                            href="#"
+                            href="https://www.instagram.com/bedbook.alquilerestemporarios/"
+                            target="_blank"
+                            rel="noreferrer"
                             onClick={() => trackClick("footer_instagram")}
                             className="bg-white/5 p-3 rounded-full border border-white/10 text-white hover:bg-accent hover:text-white hover:border-accent transition-all shadow-lg"
                         >
                             <Instagram className="w-5 h-5" />
-                        </a>
-                        <a
-                            href="#"
-                            onClick={() => trackClick("footer_facebook")}
-                            className="bg-white/5 p-3 rounded-full border border-white/10 text-white hover:bg-accent hover:text-white hover:border-accent transition-all shadow-lg"
-                        >
-                            <Facebook className="w-5 h-5" />
                         </a>
                     </div>
                 </div>

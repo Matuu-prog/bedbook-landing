@@ -43,7 +43,7 @@ export default function Hero() {
                 <motion.img
                     key={currentImageIndex}
                     src={images[currentImageIndex]}
-                    alt="Luxury Property by Bedbook"
+                    alt={`Bedbook Luxury Property - Alojamiento Premium en Salta - Foto ${currentImageIndex + 1}`}
                     initial={{ opacity: 0, scale: 1.05 }}
                     animate={{ opacity: 0.6, scale: 1 }}
                     exit={{ opacity: 0 }}
@@ -69,7 +69,7 @@ export default function Hero() {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                    Gestión premium de propiedades vacacionales.
+                    Gestion premium de alojamientos vacacionales en Salta
                 </motion.p>
 
                 {/* Toggle Modo Descanso (No Interactivo) */}

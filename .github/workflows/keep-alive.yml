@@ -1,0 +1,16 @@
+name: Supabase Keep Alive
+
+on:
+  schedule:
+    # Corre todos los días a las 00:00 UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Permite ejecutarlo manualmente
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Keep-alive Route
+        run: |
+          curl -I https://bedbook.com.ar/api/keep-alive
+          # Reemplazar bedbook.com.ar con tu dominio real cuando esté deployed

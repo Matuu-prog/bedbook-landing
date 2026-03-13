@@ -68,7 +68,7 @@ export default function ApartmentsCarousel() {
                                         className="bg-white/20 backdrop-blur-md px-6 py-2 rounded-full border border-white/30"
                                     >
                                         <span className="text-white text-xl font-medium tracking-wider">
-                                            {apartments[currentIndex].name} Suites
+                                            {apartments[currentIndex].name}
                                         </span>
                                     </motion.div>
                                 </div>
@@ -80,10 +80,11 @@ export default function ApartmentsCarousel() {
                 {/* Lado Derecho: Titular (Queda debajo de las fotos de SaltaExperience) */}
                 <div className="order-1 md:order-2 space-y-6 max-w-2xl pl-0 md:pl-8">
                     <h2 className="text-3xl md:text-5xl font-bold text-slate-800">
-                        Mirá algunos de nuestros departamentos
+                        Los espacios hablan por sí solos
                     </h2>
                     <p className="text-lg md:text-xl text-slate-500 font-light leading-relaxed">
-                        Listos esperándote para tu descanso en Salta.
+                        Mira mas de nuestros departamentos y descubrí los detalles que hacen de cada
+                        estadía una experiencia cómoda y placentera para tu descanso
                     </p>
 
                     {/* Indicadores de progreso (Dot indicators) */}

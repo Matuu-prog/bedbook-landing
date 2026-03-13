@@ -211,13 +211,15 @@ export default function LeadForm() {
 
     return (
         <section className="bg-white py-24 px-6 relative w-full border-t border-gray-100 shadow-inner">
-            <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
                 {/* Texts */}
                 <div className="space-y-6">
-                    <h2 className="text-3xl md:text-5xl font-bold text-primary">¿Listos para desconectar?</h2>
+                    <h2 className="text-3xl md:text-5xl font-bold text-primary">Respuesta rápida. Atención personalizada. Reserva en minutos.</h2>
                     <p className="text-gray-600 text-lg">
-                        Completá el formulario para recibir información exclusiva sobre nuestras propiedades o contactanos directamente para empezar tu experiencia Bedbook.
+                        Dejanos tus datos o escribinos por WhatsApp.
+                        Vas a hablar directamente con una persona de nuestro equipo y en pocos segundos te
+                        ayudamos a elegir y confirmar tu estadía.
                     </p>
                 </div>
 

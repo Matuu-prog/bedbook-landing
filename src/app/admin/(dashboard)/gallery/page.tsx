@@ -18,8 +18,7 @@ export default function GalleryPage() {
 
     // Categories mapping for UI grouping
     const categories = {
-        hero: ['hero-1', 'hero-2'],
-        salta: ['salta-vertical', 'salta-horizontal', 'salta-cuadrada', 'salta-imperdible-1', 'salta-imperdible-2', 'salta-imperdible-3']
+        hero: ['hero-1', 'hero-2']
     };
 
     useEffect(() => {
@@ -48,7 +47,8 @@ export default function GalleryPage() {
             await supabase.from('site_images').upsert({ id: id, url: urlData.publicUrl });
             fetchImages();
         } else {
-            alert('Error subiendo imagen. Verifica el bucket.');
+            console.error("Upload error:", uploadError);
+            alert('Error subiendo imagen: ' + uploadError.message + '. Verifica el bucket.');
         }
         setUploadingId(null);
     };
@@ -137,23 +137,6 @@ export default function GalleryPage() {
                 </div>
             </section>
 
-            <hr className="border-white/10" />
-
-            {/* Grupo: Salta Experience */}
-            <section className="space-y-6">
-                <div>
-                    <h3 className="text-xl font-bold text-white">Sección Salta Experience</h3>
-                    <p className="text-sm text-slate-400 mt-1">Composición visual asimétrica e "Imperdibles" del Modal.</p>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {renderImageCard('salta-vertical', 'Foto Base (Izquierda, Alta)')}
-                    {renderImageCard('salta-horizontal', 'Foto Derecha (Baja)')}
-                    {renderImageCard('salta-cuadrada', 'Foto Derecha (Alta)')}
-                    {renderImageCard('salta-imperdible-1', 'Imperdible #1 (Modal)', true)}
-                    {renderImageCard('salta-imperdible-2', 'Imperdible #2 (Modal)', true)}
-                    {renderImageCard('salta-imperdible-3', 'Imperdible #3 (Modal)', true)}
-                </div>
-            </section>
         </div>
     );
 }

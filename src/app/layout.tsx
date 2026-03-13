@@ -25,12 +25,12 @@ export const metadata: Metadata = {
   authors: [{ name: "Bedbook" }],
   robots: "index, follow",
   alternates: {
-    canonical: "https://bedbook.com.ar", // Reemplazar con el dominio real si es diferente
+    canonical: "https://bedbook-landing.vercel.app",
   },
   openGraph: {
     type: "website",
     locale: "es_AR",
-    url: "https://bedbook.com.ar",
+    url: "https://bedbook-landing.vercel.app",
     title: "Bedbook | Alquileres Temporarios Premium en Salta",
     description: "Gestión premium de alojamientos vacacionales en Salta. Encontrá tu próximo hogar lejos de casa.",
     siteName: "Bedbook",

@@ -12,5 +12,4 @@ jobs:
     steps:
       - name: Ping Keep-alive Route
         run: |
-          curl -I https://bedbook.com.ar/api/keep-alive
-          # Reemplazar bedbook.com.ar con tu dominio real cuando esté deployed
+          curl -I https://bedbook-landing.vercel.app/api/keep-alive

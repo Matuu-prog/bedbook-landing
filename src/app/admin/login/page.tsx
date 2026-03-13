@@ -89,6 +89,15 @@ export default function AdminLogin() {
                                     required
                                 />
                             </div>
+                            <div className="flex justify-end mt-1">
+                                <button
+                                    type="button"
+                                    onClick={() => router.push("/admin/login/forgot-password")}
+                                    className="text-xs text-slate-500 hover:text-primary transition-colors"
+                                >
+                                    ¿Olvidaste tu contraseña?
+                                </button>
+                            </div>
                         </div>
                     </div>
 
